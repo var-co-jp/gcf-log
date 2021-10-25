@@ -18,11 +18,10 @@ type key int
 
 var header key
 
-func Init(projectID string, r *http.Request) (ctx context.Context) {
-	empCtx := context.Background()
+func Init(original context.Context, projectID string, r *http.Request) (ctx context.Context) {
 	config.SetProjectID(projectID)
 	headerValue := fetchHeader(r)
-	ctx = context.WithValue(empCtx, header, headerValue)
+	ctx = context.WithValue(original, header, headerValue)
 	return
 }
 
