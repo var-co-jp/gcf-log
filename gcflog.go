@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/var-co-jp/gcf-log/config"
+	"go.opencensus.io/trace"
 )
 
 type key int
@@ -20,7 +21,13 @@ var header key
 
 func Init(original context.Context, projectID string, r *http.Request) (ctx context.Context) {
 	config.SetProjectID(projectID)
-	headerValue := fetchHeader(r)
+	if r != nil {
+		headerValue := fetchHeader(r)
+		ctx = context.WithValue(original, header, headerValue)
+		return
+	}
+	pctx := trace.FromContext(original).SpanContext()
+	headerValue := generateHeader(pctx)
 	ctx = context.WithValue(original, header, headerValue)
 	return
 }
@@ -30,6 +37,11 @@ func fetchHeader(r *http.Request) (header string) {
 	if header == "" {
 		header = "00000000000000000000000000000000/0000000000000000;o=TRACE_TRUE"
 	}
+	return
+}
+
+func generateHeader(pctx trace.SpanContext) (header string) {
+	header = fmt.Sprintf("%s/%s;o=TRACE_TRUE", pctx.TraceID.String(), pctx.SpanID.String())
 	return
 }
 
