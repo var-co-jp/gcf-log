@@ -86,8 +86,8 @@ func getSpan(ctx context.Context) (span string) {
 	return
 }
 
-func LogDebug(ctx context.Context, message string) {
-	logInfo := config.LogFormat{
+func Debug(ctx context.Context, message string) {
+	logDebug := config.LogFormat{
 		Severity:       config.DEBUG,
 		Message:        message,
 		Time:           time.Now(),
@@ -96,11 +96,11 @@ func LogDebug(ctx context.Context, message string) {
 		SpanId:         getSpan(ctx),
 		TraceSample:    false,
 	}
-	bytes, _ := json.Marshal(logInfo)
+	bytes, _ := json.Marshal(logDebug)
 	fmt.Println(string(bytes))
 }
 
-func LogInfo(ctx context.Context, message string) {
+func Info(ctx context.Context, message string) {
 	logInfo := config.LogFormat{
 		Severity:       config.INFO,
 		Message:        message,
@@ -114,8 +114,8 @@ func LogInfo(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func LogWarn(ctx context.Context, message string) {
-	logInfo := config.LogFormat{
+func Warn(ctx context.Context, message string) {
+	logWarn := config.LogFormat{
 		Severity:       config.WARN,
 		Message:        message,
 		Time:           time.Now(),
@@ -124,11 +124,11 @@ func LogWarn(ctx context.Context, message string) {
 		SpanId:         getSpan(ctx),
 		TraceSample:    false,
 	}
-	bytes, _ := json.Marshal(logInfo)
+	bytes, _ := json.Marshal(logWarn)
 	fmt.Println(string(bytes))
 }
 
-func LogError(ctx context.Context, message string) {
+func Error(ctx context.Context, message string) {
 	logError := config.LogFormat{
 		Severity:       config.ERROR,
 		Message:        message,
@@ -142,8 +142,8 @@ func LogError(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func LogCritical(ctx context.Context, message string) {
-	logInfo := config.LogFormat{
+func Critical(ctx context.Context, message string) {
+	logCritical := config.LogFormat{
 		Severity:       config.CRITICAL,
 		Message:        message,
 		Time:           time.Now(),
@@ -152,12 +152,12 @@ func LogCritical(ctx context.Context, message string) {
 		SpanId:         getSpan(ctx),
 		TraceSample:    false,
 	}
-	bytes, _ := json.Marshal(logInfo)
+	bytes, _ := json.Marshal(logCritical)
 	fmt.Println(string(bytes))
 }
 
-func LogAlert(ctx context.Context, message string) {
-	logInfo := config.LogFormat{
+func Alert(ctx context.Context, message string) {
+	logAlert := config.LogFormat{
 		Severity:       config.ALERT,
 		Message:        message,
 		Time:           time.Now(),
@@ -166,6 +166,6 @@ func LogAlert(ctx context.Context, message string) {
 		SpanId:         getSpan(ctx),
 		TraceSample:    false,
 	}
-	bytes, _ := json.Marshal(logInfo)
+	bytes, _ := json.Marshal(logAlert)
 	fmt.Println(string(bytes))
 }
