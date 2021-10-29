@@ -51,4 +51,4 @@ For more information, see see the URL below.
 
 ## Licence
 
-MIT
+[MIT License](LICENSE).
