@@ -61,6 +61,8 @@ func SetLogLevel(level string) {
 		logLevel = CRITICAL
 	case "ALERT":
 		logLevel = ALERT
+	default:
+		log.Printf("WARN: Log Level value is invalid")
 	}
 }
 
