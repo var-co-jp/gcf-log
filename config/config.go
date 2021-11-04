@@ -7,17 +7,23 @@ import (
 
 type LogType string
 
+type Log struct {
+	LogType LogType
+	Level   int
+}
+
 var (
 	projectID = ""
+	logLevel  = DEBUG
 )
 
-const (
-	DEBUG    = LogType("DEBUG")
-	INFO     = LogType("INFO")
-	WARN     = LogType("WARNING")
-	ERROR    = LogType("ERROR")
-	CRITICAL = LogType("CRITICAL")
-	ALERT    = LogType("ALERT")
+var (
+	DEBUG    = Log{LogType("DEBUG"), 0}
+	INFO     = Log{LogType("INFO"), 1}
+	WARN     = Log{LogType("WARN"), 2}
+	ERROR    = Log{LogType("ERROR"), 3}
+	CRITICAL = Log{LogType("CRITICAL"), 4}
+	ALERT    = Log{LogType("ALERT"), 5}
 )
 
 type LogFormat struct {
@@ -39,4 +45,27 @@ func SetProjectID(_projectID string) {
 
 func GetProjectID() string {
 	return projectID
+}
+
+func SetLogLevel(level string) {
+	switch level {
+	case "DEBUG":
+		logLevel = DEBUG
+	case "INFO":
+		logLevel = INFO
+	case "WARN":
+		logLevel = WARN
+	case "ERROR":
+		logLevel = ERROR
+	case "CRITICAL":
+		logLevel = CRITICAL
+	case "ALERT":
+		logLevel = ALERT
+	default:
+		log.Printf("WARN: Log Level value is invalid")
+	}
+}
+
+func GetLogLevel() int {
+	return logLevel.Level
 }

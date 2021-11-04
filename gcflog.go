@@ -86,9 +86,16 @@ func getSpan(ctx context.Context) (span string) {
 	return
 }
 
+func SetLogLevel(level string) {
+	config.SetLogLevel(level)
+}
+
 func Debug(ctx context.Context, message string) {
+	if config.DEBUG.Level < config.GetLogLevel() {
+		return
+	}
 	logDebug := config.LogFormat{
-		Severity:       config.DEBUG,
+		Severity:       config.DEBUG.LogType,
 		Message:        message,
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
@@ -101,8 +108,11 @@ func Debug(ctx context.Context, message string) {
 }
 
 func Info(ctx context.Context, message string) {
+	if config.INFO.Level < config.GetLogLevel() {
+		return
+	}
 	logInfo := config.LogFormat{
-		Severity:       config.INFO,
+		Severity:       config.INFO.LogType,
 		Message:        message,
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
@@ -115,8 +125,11 @@ func Info(ctx context.Context, message string) {
 }
 
 func Warn(ctx context.Context, message string) {
+	if config.WARN.Level < config.GetLogLevel() {
+		return
+	}
 	logWarn := config.LogFormat{
-		Severity:       config.WARN,
+		Severity:       config.WARN.LogType,
 		Message:        message,
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
@@ -129,8 +142,11 @@ func Warn(ctx context.Context, message string) {
 }
 
 func Error(ctx context.Context, message string) {
+	if config.ERROR.Level < config.GetLogLevel() {
+		return
+	}
 	logError := config.LogFormat{
-		Severity:       config.ERROR,
+		Severity:       config.ERROR.LogType,
 		Message:        message,
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
@@ -143,8 +159,11 @@ func Error(ctx context.Context, message string) {
 }
 
 func Critical(ctx context.Context, message string) {
+	if config.CRITICAL.Level < config.GetLogLevel() {
+		return
+	}
 	logCritical := config.LogFormat{
-		Severity:       config.CRITICAL,
+		Severity:       config.CRITICAL.LogType,
 		Message:        message,
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
@@ -157,8 +176,11 @@ func Critical(ctx context.Context, message string) {
 }
 
 func Alert(ctx context.Context, message string) {
+	if config.ALERT.Level < config.GetLogLevel() {
+		return
+	}
 	logAlert := config.LogFormat{
-		Severity:       config.ALERT,
+		Severity:       config.ALERT.LogType,
 		Message:        message,
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
