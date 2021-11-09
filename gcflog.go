@@ -90,13 +90,13 @@ func SetLogLevel(level string) {
 	config.SetLogLevel(level)
 }
 
-func Debug(ctx context.Context, message string) {
+func Debugf(ctx context.Context, format string, args []interface{}) {
 	if config.DEBUG.Level <= config.GetLogLevel() {
 		return
 	}
 	logDebug := config.LogFormat{
 		Severity:       config.DEBUG.LogType,
-		Message:        message,
+		Message:        fmt.Sprintf(format, args...),
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
 		TraceId:        getTrace(ctx),
@@ -107,13 +107,13 @@ func Debug(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func Info(ctx context.Context, message string) {
+func Infof(ctx context.Context, format string, args []interface{}) {
 	if config.INFO.Level <= config.GetLogLevel() {
 		return
 	}
 	logInfo := config.LogFormat{
 		Severity:       config.INFO.LogType,
-		Message:        message,
+		Message:        fmt.Sprintf(format, args...),
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
 		TraceId:        getTrace(ctx),
@@ -124,13 +124,13 @@ func Info(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func Warn(ctx context.Context, message string) {
+func Warnf(ctx context.Context, format string, args []interface{}) {
 	if config.WARN.Level <= config.GetLogLevel() {
 		return
 	}
 	logWarn := config.LogFormat{
 		Severity:       config.WARN.LogType,
-		Message:        message,
+		Message:        fmt.Sprintf(format, args...),
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
 		TraceId:        getTrace(ctx),
@@ -141,13 +141,13 @@ func Warn(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func Error(ctx context.Context, message string) {
+func Errorf(ctx context.Context, format string, args []interface{}) {
 	if config.ERROR.Level <= config.GetLogLevel() {
 		return
 	}
 	logError := config.LogFormat{
 		Severity:       config.ERROR.LogType,
-		Message:        message,
+		Message:        fmt.Sprintf(format, args...),
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
 		TraceId:        getTrace(ctx),
@@ -158,13 +158,13 @@ func Error(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func Critical(ctx context.Context, message string) {
+func Criticalf(ctx context.Context, format string, args []interface{}) {
 	if config.CRITICAL.Level <= config.GetLogLevel() {
 		return
 	}
 	logCritical := config.LogFormat{
 		Severity:       config.CRITICAL.LogType,
-		Message:        message,
+		Message:        fmt.Sprintf(format, args...),
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
 		TraceId:        getTrace(ctx),
@@ -175,13 +175,13 @@ func Critical(ctx context.Context, message string) {
 	fmt.Println(string(bytes))
 }
 
-func Alert(ctx context.Context, message string) {
+func Alertf(ctx context.Context, format string, args []interface{}) {
 	if config.ALERT.Level <= config.GetLogLevel() {
 		return
 	}
 	logAlert := config.LogFormat{
 		Severity:       config.ALERT.LogType,
-		Message:        message,
+		Message:        fmt.Sprintf(format, args...),
 		Time:           time.Now(),
 		SourceLocation: getSourceLocation(),
 		TraceId:        getTrace(ctx),
