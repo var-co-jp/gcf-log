@@ -91,7 +91,7 @@ func SetLogLevel(level string) {
 }
 
 func Debug(ctx context.Context, message string) {
-	if config.DEBUG.Level < config.GetLogLevel() {
+	if config.DEBUG.Level <= config.GetLogLevel() {
 		return
 	}
 	logDebug := config.LogFormat{
@@ -108,7 +108,7 @@ func Debug(ctx context.Context, message string) {
 }
 
 func Info(ctx context.Context, message string) {
-	if config.INFO.Level < config.GetLogLevel() {
+	if config.INFO.Level <= config.GetLogLevel() {
 		return
 	}
 	logInfo := config.LogFormat{
@@ -125,7 +125,7 @@ func Info(ctx context.Context, message string) {
 }
 
 func Warn(ctx context.Context, message string) {
-	if config.WARN.Level < config.GetLogLevel() {
+	if config.WARN.Level <= config.GetLogLevel() {
 		return
 	}
 	logWarn := config.LogFormat{
@@ -142,7 +142,7 @@ func Warn(ctx context.Context, message string) {
 }
 
 func Error(ctx context.Context, message string) {
-	if config.ERROR.Level < config.GetLogLevel() {
+	if config.ERROR.Level <= config.GetLogLevel() {
 		return
 	}
 	logError := config.LogFormat{
@@ -159,7 +159,7 @@ func Error(ctx context.Context, message string) {
 }
 
 func Critical(ctx context.Context, message string) {
-	if config.CRITICAL.Level < config.GetLogLevel() {
+	if config.CRITICAL.Level <= config.GetLogLevel() {
 		return
 	}
 	logCritical := config.LogFormat{
@@ -176,7 +176,7 @@ func Critical(ctx context.Context, message string) {
 }
 
 func Alert(ctx context.Context, message string) {
-	if config.ALERT.Level < config.GetLogLevel() {
+	if config.ALERT.Level <= config.GetLogLevel() {
 		return
 	}
 	logAlert := config.LogFormat{
