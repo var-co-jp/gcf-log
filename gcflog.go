@@ -91,7 +91,7 @@ func SetLogLevel(level string) {
 }
 
 func Debugf(ctx context.Context, format string, args []interface{}) {
-	if config.DEBUG.Level <= config.GetLogLevel() {
+	if config.DEBUG.Level > config.GetLogLevel() {
 		return
 	}
 	logDebug := config.LogFormat{
@@ -108,7 +108,7 @@ func Debugf(ctx context.Context, format string, args []interface{}) {
 }
 
 func Infof(ctx context.Context, format string, args []interface{}) {
-	if config.INFO.Level <= config.GetLogLevel() {
+	if config.INFO.Level > config.GetLogLevel() {
 		return
 	}
 	logInfo := config.LogFormat{
@@ -125,7 +125,7 @@ func Infof(ctx context.Context, format string, args []interface{}) {
 }
 
 func Warnf(ctx context.Context, format string, args []interface{}) {
-	if config.WARN.Level <= config.GetLogLevel() {
+	if config.WARN.Level > config.GetLogLevel() {
 		return
 	}
 	logWarn := config.LogFormat{
@@ -142,7 +142,7 @@ func Warnf(ctx context.Context, format string, args []interface{}) {
 }
 
 func Errorf(ctx context.Context, format string, args []interface{}) {
-	if config.ERROR.Level <= config.GetLogLevel() {
+	if config.ERROR.Level > config.GetLogLevel() {
 		return
 	}
 	logError := config.LogFormat{
@@ -159,7 +159,7 @@ func Errorf(ctx context.Context, format string, args []interface{}) {
 }
 
 func Criticalf(ctx context.Context, format string, args []interface{}) {
-	if config.CRITICAL.Level <= config.GetLogLevel() {
+	if config.CRITICAL.Level > config.GetLogLevel() {
 		return
 	}
 	logCritical := config.LogFormat{
@@ -176,7 +176,7 @@ func Criticalf(ctx context.Context, format string, args []interface{}) {
 }
 
 func Alertf(ctx context.Context, format string, args []interface{}) {
-	if config.ALERT.Level <= config.GetLogLevel() {
+	if config.ALERT.Level > config.GetLogLevel() {
 		return
 	}
 	logAlert := config.LogFormat{
