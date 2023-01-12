@@ -35,7 +35,7 @@ import "github.com/var-co-jp/gcf-log"
 
 var projectID = "your GCP project ID here!"
 
-func HttpTrigger(ctx context.Context, m PubSubMessage) {
+func EventTrigger(ctx context.Context, m PubSubMessage) {
 	// use Init() with args context, GCP projectID, and nil ****
 	ctx = gcflog.Init(ctx, projectID, nil)
 	gcflog.Debug(ctx, "Log started.")
